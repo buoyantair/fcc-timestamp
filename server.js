@@ -17,18 +17,16 @@ app.get("/", function (request, response) {
 });
 
 app.get("/:data", (req, res)=>{
-  let re = {
-    unix: isNaN(Date.parse(req.params.data)) ? null : Date.parse(req.params.data),
-    natural: null
+
+  let date = Date.parse(req.params.data);
+  let unix;
+  if(!isNaN(date)){
+    unix = date.getUTCMilliseconds();
   }
   
+  console.log(unix, date);
   
-  if(date.isNaN()){
-    res.send(JSON.stringify(re));
-  }
-  else {
-    res.send(date.toString());
-  }
+  //res.send(JSON.stringify(re));
   
   
 })
