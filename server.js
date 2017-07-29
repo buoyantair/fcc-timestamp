@@ -29,7 +29,7 @@ app.get("/:data", (req, res)=>{
     unix = req.params.data;
   }
   
-  if((natural != null  || natural !== "Invalid Date" ) && unix != null){
+  if(natural != null  && natural !== "Invalid Date"  && unix != null){
     res.json({natural, unix})
   } else {
     res.json({natural: null, unix:null})
