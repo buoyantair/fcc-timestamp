@@ -17,7 +17,20 @@ app.get("/", function (request, response) {
 });
 
 app.get("/:data", (req, res)=>{
-  res.send(req.params.data);
+  let re = {
+    unix: isNaN(Date.parse(req.params.data)) ? null : Date.parse(req.params.data),
+    natural: null
+  }
+  
+  
+  if(date.isNaN()){
+    res.send(JSON.stringify(re));
+  }
+  else {
+    res.send(date.toString());
+  }
+  
+  
 })
 
 // listen for requests :)
