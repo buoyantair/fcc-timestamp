@@ -17,17 +17,15 @@ app.get("/", function (request, response) {
 });
 
 app.get("/:data", (req, res)=>{
-
-  let date = Date.parse(req.params.data);
+  let natural;
   let unix;
-  if(!isNaN(date)){
-    unix = date.getUTCMilliseconds();
+  
+  if(!Number(req.params.data)){
+    natural = new Date(req.params.data);
+    unix = natural.toString();
   }
   
-  console.log(unix, date);
-  
-  //res.send(JSON.stringify(re));
-  
+  res.send(`${natural.toString()} and ${unix.toString()}`)
   
 })
 
