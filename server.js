@@ -25,11 +25,17 @@ app.get("/:data", (req, res)=>{
     natural = date.toDateString();
     unix = date.valueOf();
   } else if (Number(req.params.data)){
-    natural = new Date(Number(req.params.data));
+    natural = new Date(Number(req.params.data)).toDateString();
     unix = req.params.data;
   }
   
-  res.json({natural, unix})
+  if((natural != null  || natural !== "Invalid Date" ) && unix != null){
+    res.json({natural, unix})
+  } else {
+    res.json({natural: null, unix:null})
+  }
+  
+  
   
 })
 
