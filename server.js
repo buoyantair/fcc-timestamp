@@ -17,15 +17,19 @@ app.get("/", function (request, response) {
 });
 
 app.get("/:data", (req, res)=>{
+  let date = new Date(req.params.data);
   let natural;
   let unix;
   
   if(!Number(req.params.data)){
-    natural = new Date(req.params.data);
-    unix = natural.toString();
+    natural = date.toDateString();
+    unix = date.valueOf();
+  } else if (Number(req.params.data)){
+    natural = new Date(Number(req.params.data));
+    unix = req.params.data;
   }
   
-  res.send(`${natural.toString()} and ${unix.toString()}`)
+  res.json({natural, unix})
   
 })
 
